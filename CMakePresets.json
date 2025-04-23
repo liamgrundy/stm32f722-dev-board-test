@@ -1,0 +1,77 @@
+{
+  "version": 6,
+  "configurePresets": [
+    {
+      "name": "arm-gcc",
+      "hidden": true,
+      "generator": "Ninja",
+      "toolchainFile": "${sourceDir}/toolchains/arm_gcc_toolchain.cmake"
+    },
+
+    {
+      "name": "debug",
+      "hidden": true,
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug"
+      }
+    },
+    {
+      "name": "release",
+      "hidden": true,
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release"
+      }
+    },
+
+    {
+      "name": "arm-gcc-debug",
+      "inherits": ["arm-gcc", "debug"],
+      "binaryDir": "${sourceDir}/build/debug"
+    },
+    {
+      "name": "arm-gcc-release",
+      "inherits": ["arm-gcc", "release"],
+      "binaryDir": "${sourceDir}/build/release"
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "arm-gcc-debug",
+      "configurePreset": "arm-gcc-debug",
+      "jobs": 18
+    },
+    {
+      "name": "arm-gcc-release",
+      "configurePreset": "arm-gcc-release",
+      "jobs": 18
+    }
+  ],
+  "workflowPresets": [
+    {
+      "name": "arm-gcc-debug",
+      "steps": [
+        {
+          "type": "configure",
+          "name": "arm-gcc-debug"
+        },
+        {
+          "type": "build",
+          "name": "arm-gcc-debug"
+        }
+      ]
+    },
+    {
+      "name": "arm-gcc-release",
+      "steps": [
+        {
+          "type": "configure",
+          "name": "arm-gcc-release"
+        },
+        {
+          "type": "build",
+          "name": "arm-gcc-release"
+        }
+      ]
+    }
+  ]
+}

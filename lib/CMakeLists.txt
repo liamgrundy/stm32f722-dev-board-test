@@ -1,0 +1,2 @@
+add_subdirectory(cmsis_core)
+add_subdirectory(cmsis_device_f7)

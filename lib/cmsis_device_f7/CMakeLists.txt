@@ -1,0 +1,3 @@
+add_library(cmsis_device_f7 startup_stm32f722xx.s system_stm32f7xx.c)
+target_include_directories(cmsis_device_f7 PUBLIC ${CMAKE_SOURCE_DIR}/include/cmsis_device_f7)
+target_link_libraries(cmsis_device_f7 PUBLIC cmsis_core)
