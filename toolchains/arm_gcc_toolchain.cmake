@@ -9,10 +9,12 @@ set(CMAKE_OBJDUMP arm-none-eabi-objdump)
 set(SIZE arm-none-eabi-size)
 set(CMAKE_TRY_COMPILE_TARGET_TYPE STATIC_LIBRARY)
 
-add_compile_options(-mcpu=cortex-m7 -mthumb -mthumb-interwork)
+add_compile_options(-mcpu=cortex-m7 -mthumb -mthumb-interwork -mfpu=fpv5-d16 -mfloat-abi=hard --specs=nano.specs --specs=nosys.specs)
 add_compile_options(-ffunction-sections -fdata-sections -fno-common)
 
 add_compile_options($<$<COMPILE_LANGUAGE:ASM>:-x$<SEMICOLON>assembler-with-cpp>)
+
+add_link_options(-mcpu=cortex-m7 -mthumb -mthumb-interwork -mfpu=fpv5-d16 -mfloat-abi=hard --specs=nano.specs --specs=nosys.specs)
 
 if (CMAKE_BUILD_TYPE STREQUAL Release)
     message(STATUS "Release build")
