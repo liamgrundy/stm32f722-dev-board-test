@@ -17,6 +17,4 @@ FetchContent_Declare( freertos_kernel
 )
 
 add_subdirectory(lib)
-
-add_executable(stm32f722_dev_board_test.elf main.cpp)
-target_link_libraries(stm32f722_dev_board_test.elf PRIVATE cmsis_core cmsis_device_f7 freertos_kernel)
+add_subdirectory(src)
